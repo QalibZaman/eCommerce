@@ -1,0 +1,50 @@
+{% load django_bootstrap5 %}
+{% bootstrap_css %}
+{% bootstrap_javascript %}
+
+{% if name == 'register' %}
+<div class="register col-4">
+    <form action="" method="post">
+        {% csrf_token %}
+        {% bootstrap_form form %}
+        <button type="submit" class="btn btn-primary">Next</button>
+    </form>
+</div>
+
+{% else %}
+<div class="login col-4">
+    <form action="" method="post">
+        {% csrf_token %}
+        <div class="form-floating mb-3">
+            <input type="text" name="username" class="form-control" id="floatingInput" placeholder="Username">
+            <label for="floatingInput">Username</label>
+          </div>
+          <div class="form-floating">
+            <input type="password" name="password" class="form-control" id="floatingPassword " placeholder="Password">
+            <label for="floatingPassword">Password</label>
+            <br>
+            <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+                {% block messages %}
+                <ul class="messages" id="messages-list">
+                {% if messages %}
+                    {% for message in messages %}
+                    <li>
+                        {% if message.tags %}
+                             <div class="alert alert-{{ message.tags }} msg fade show" role="alert">{{ message }}</div>
+                        {% else %}
+                            <div class="alert alert-info msg fade show" role="alert">{{ message }}</div>
+                        {% endif %}
+                    </li>
+                    {% endfor %}
+                {% endif %}
+                </ul>
+                {% endblock %}
+            
+            <button type="submit" class="btn btn-primary me-md-2 ">Login</button>
+            <a href="{% url 'register' %}">Register</a>
+        </div>
+          </div>
+    </form>
+
+</div>
+{% endif %}
