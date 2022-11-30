@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import UserCreationForm 
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
-from .models import UserDetails, Sharing
+from .models import UserDetails, Sharing, Product
 from django.forms import ModelForm
 
 class UserForm(UserCreationForm):
@@ -42,3 +42,9 @@ class SharingForm(ModelForm):
     class Meta:
         model = Sharing
         fields = ['text',]
+    
+
+class ProductForm(ModelForm):
+    class Meta:
+        model = Product
+        fields = "__all__"

@@ -14,7 +14,7 @@ class UserDetails(models.Model):
     created = models.DateField(auto_now_add=True)
     birthday = models.DateField(null=True)
     profile_photo = models.ImageField(upload_to='photos/')
-    user = models.ForeignKey(User, null=True, on_delete = models.CASCADE)
+    user = models.OneToOneField(User, null=True, on_delete = models.CASCADE)
 
     def __str__(self) -> str:
         return self.name + ' '+ self.surname
@@ -37,3 +37,13 @@ class Following(models.Model):
 
     def __str__(self) -> str:
         return self.following.username
+
+class Product(models.Model):
+    name = models.CharField(max_length=250, null=True)
+    description = models.TextField(max_length=250, null=True)
+    price = models.FloatField(null=True)
+    created = models.DateTimeField(auto_now_add=True)
+    edited = models.DateTimeField(auto_now = True)
+
+    def __str__(self):
+        return self.name

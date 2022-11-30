@@ -89,8 +89,7 @@ def details(request):
             return redirect('home')
     return render(request, "details.html", {"form": form})
 
-@login_required(login_url='login/')
-def createPost(request):
 
+def store(request):
+    return render(request, "store.html")
 
-    return render(request, 'post.html')
